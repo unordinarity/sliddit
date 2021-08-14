@@ -4,19 +4,26 @@ tinycolor.prototype.normalize = function (
   target: number = 0.5,
   intensity: number = 0.25,
   threshold: number = 0.01,
+  initialColorImportance = 0.2,
+  overlap: number = 0.02
 ) {
+  const initialValue = this
   let result = this
-  let tries = 10
+  let tries = 20
+
+  const targetSpecified = target +
+    initialColorImportance *
+    Math.max(initialValue.getLuminance() - 0.5, 0)
 
   while ((
-    result.getLuminance() > target + threshold ||
-    result.getLuminance() < target - threshold
+    result.getLuminance() > targetSpecified + threshold ||
+    result.getLuminance() < targetSpecified - threshold
   ) && (
     tries > 0
   )) {
-    result = this.getLuminance() <= target
-      ? this.lighten((target - this.getLuminance()) * 100 * intensity)
-      : this.darken((this.getLuminance() - target) * 100 * intensity)
+    result = this.getLuminance() <= targetSpecified
+      ? this.lighten((targetSpecified - this.getLuminance() + overlap) * 100 * intensity)
+      : this.darken((this.getLuminance() - targetSpecified + overlap) * 100 * intensity)
     tries -= 1
   }
 
@@ -25,6 +32,12 @@ tinycolor.prototype.normalize = function (
 
 declare module 'tinycolor2' {
   interface Instance {
-    normalize: (target?: number, intensity?: number, threshold?: number) => Instance
+    normalize: (
+      target?: number,
+      intensity?: number,
+      threshold?: number,
+      initialColorImportance?: number,
+      overlap?: number,
+    ) => Instance
   }
 }
