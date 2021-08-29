@@ -6,6 +6,7 @@ import './tinycolor-normalize'
 // hues
 
 export const hues = Object.freeze({
+  earl: '#777777',
   salsa: '#E64C52',
   pumpkin: '#ED7F40',
   mango: '#FFB53D',
@@ -35,17 +36,17 @@ export type ShadeCodes = (typeof shadeCodes)[number]
 
 export const shades: Record<HueNames, Partial<Record<ShadeCodes, string>>> =
   map(value => ({
-    'a50': tinycolor(value).normalize(0.01).desaturate(30).toHexString(),
-    'a100': tinycolor(value).normalize(0.05).desaturate(15).toHexString(),
-    'a200': tinycolor(value).normalize(0.09).desaturate(10).toHexString(),
-    'a300': tinycolor(value).normalize(0.17).desaturate(5).toHexString(),
-    'a400': tinycolor(value).normalize(0.28).toHexString(),
+    'a50': tinycolor(value).normalize(0.01).desaturate(35).toHexString(),
+    'a100': tinycolor(value).normalize(0.03).desaturate(20).toHexString(),
+    'a200': tinycolor(value).normalize(0.08).desaturate(10).toHexString(),
+    'a300': tinycolor(value).normalize(0.15).desaturate(5).toHexString(),
+    'a400': tinycolor(value).normalize(0.27).toHexString(),
     'a500': tinycolor(value).normalize(0.39).toHexString(),
     'a600': tinycolor(value).normalize(0.52).toHexString(),
-    'a700': tinycolor(value).normalize(0.60).saturate(5).toHexString(),
-    'a800': tinycolor(value).normalize(0.69).saturate(10).toHexString(),
-    'a900': tinycolor(value).normalize(0.74).saturate(15).toHexString(),
-    'a950': tinycolor(value).normalize(0.9).saturate(30).toHexString(),
+    'a700': tinycolor(value).normalize(0.63).saturate(5).toHexString(),
+    'a800': tinycolor(value).normalize(0.76).saturate(10).toHexString(),
+    'a900': tinycolor(value).normalize(0.88).saturate(20).toHexString(),
+    'a950': tinycolor(value).normalize(0.95).saturate(35).toHexString(),
   }), hues)
 
 // themes

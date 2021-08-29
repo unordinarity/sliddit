@@ -1,0 +1,4 @@
+# 'Icon' directory is added in project .gitignore as a part of MacOS .ignore template
+# but it also makes git omit 'icon' component directory in case-insensitive file systems,
+# so there is exception for them
+!icon
